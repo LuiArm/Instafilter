@@ -10,31 +10,27 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var image: Image?
+    @State private var inputImage: UIImage?
+    @State private var showingImagePicker = false
     
     var body: some View {
         VStack{
             image?
                 .resizable()
                 .scaledToFit()
+            Button("Select image"){
+                showingImagePicker = true
+            }
         }
-        .onAppear(perform: loadImage)
+        .sheet(isPresented: $showingImagePicker){
+            ImagePicker(image: $inputImage)
+        }
+        .onChange(of: inputImage){ _ in loadImage() }
     }
     
-    func loadImage() {
-        guard let inputImage = UIImage(named: "Thriller") else {return}
-        let beginImage = CIImage(image: inputImage)
-        
-        let context = CIContext()
-        let currentFilter = CIFilter.sepiaTone()
-        currentFilter.inputImage = beginImage
-        currentFilter.intensity = 1
-        
-        
-        guard let outputImage = currentFilter.outputImage else {return}
-        if let cgimg = context.createCGImage(outputImage, from: outputImage.extent){
-            let uiImage = UIImage(cgImage: cgimg)
-            image = Image(uiImage: uiImage)
-        }
+    func loadImage(){
+        guard let inputImage = inputImage else {return}
+        image = Image(uiImage: inputImage)
     }
 }
 
