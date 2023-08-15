@@ -58,9 +58,9 @@
 				F65FB9152A75B2770040FA2D /* InstafilterApp.swift */,
 				F65FB9172A75B2770040FA2D /* ContentView.swift */,
 				F6015E8D2A88685F00629AA8 /* ImagePicker.swift */,
+				F6015E8F2A89EC8400629AA8 /* ImageSaver.swift */,
 				F65FB9192A75B2790040FA2D /* Assets.xcassets */,
 				F65FB91B2A75B2790040FA2D /* Preview Content */,
-				F6015E8F2A89EC8400629AA8 /* ImageSaver.swift */,
 			);
 			path = Instafilter;
 			sourceTree = "<group>";
